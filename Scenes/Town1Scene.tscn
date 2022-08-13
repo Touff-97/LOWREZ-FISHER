@@ -144,6 +144,9 @@ anims/RESET = SubResource( 2 )
 [node name="Tween" type="Tween" parent="." index="5"]
 
 [connection signal="day_finished" from="SkyBox" to="." method="_on_day_finished"]
+[connection signal="mouse_entered" from="Background/ToTown2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="Background/ToTent" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="Background/ToFishing" to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_goToButton_mouse_entered" binds= [ "Left" ]]
 [connection signal="mouse_exited" from="HBox/LeftButton" to="." method="_on_goToButton_mouse_exited" binds= [ "Left" ]]
