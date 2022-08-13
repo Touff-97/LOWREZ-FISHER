@@ -1,0 +1,129 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Scenes/Scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/p-town-1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/h-town-1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/game-map.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/p-town-3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/h-town-2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/h-town-3.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/p-town-2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/h-town-4.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/p-town-4.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/p-town-5.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/h-town-5.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/BackButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Sprites/d-town-1.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/d-town-5.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/d-town-2.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/d-town-4.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/d-town-3.png" type="Texture" id=20]
+[ext_resource path="res://Scripts/MapScene.gd" type="Script" id=21]
+[ext_resource path="res://Assets/Sprites/a-town-1.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/a-town-3.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/a-town-4.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/a-town-5.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/a-town-2.png" type="Texture" id=26]
+
+[node name="MapScene" instance=ExtResource( 1 )]
+script = ExtResource( 21 )
+
+[node name="BackgroundMap" type="TextureRect" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="TownMarkers" type="Control" parent="." index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Town1" type="TextureButton" parent="TownMarkers" index="0"]
+margin_left = 5.0
+margin_top = 12.0
+margin_right = 8.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 3, 3 )
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 16 )
+expand = true
+
+[node name="Town2" type="TextureButton" parent="TownMarkers" index="1"]
+margin_left = 15.0
+margin_top = 12.0
+margin_right = 19.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 4, 4 )
+disabled = true
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 18 )
+expand = true
+
+[node name="Town3" type="TextureButton" parent="TownMarkers" index="2"]
+margin_left = 24.0
+margin_top = 43.0
+margin_right = 27.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 5, 5 )
+disabled = true
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 20 )
+expand = true
+
+[node name="Town4" type="TextureButton" parent="TownMarkers" index="3"]
+margin_left = 26.0
+margin_top = 32.0
+margin_right = 29.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 8, 7 )
+disabled = true
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
+texture_disabled = ExtResource( 19 )
+expand = true
+
+[node name="Town5" type="TextureButton" parent="TownMarkers" index="4"]
+margin_left = 42.0
+margin_top = 41.0
+margin_right = 45.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 5, 5 )
+disabled = true
+texture_normal = ExtResource( 25 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 12 )
+texture_disabled = ExtResource( 17 )
+expand = true
+
+[node name="Margin" type="MarginContainer" parent="." index="2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="BackButton" parent="Margin" index="0" instance=ExtResource( 13 )]
+margin_left = 4.0
+margin_top = 52.0
+margin_right = 12.0
+margin_bottom = 60.0
+size_flags_vertical = 10
+next_scene = "MainMenuScene"
+
+[connection signal="mouse_entered" from="TownMarkers/Town1" to="." method="_on_Town_mouse_entered"]
+[connection signal="pressed" from="TownMarkers/Town1" to="." method="_on_Town_pressed" binds= [ "Town1" ]]
+[connection signal="pressed" from="TownMarkers/Town2" to="." method="_on_Town_pressed" binds= [ "Town2" ]]
+[connection signal="pressed" from="TownMarkers/Town3" to="." method="_on_Town_pressed" binds= [ "Town3" ]]
+[connection signal="pressed" from="TownMarkers/Town4" to="." method="_on_Town_pressed" binds= [ "Town4" ]]
+[connection signal="pressed" from="TownMarkers/Town5" to="." method="_on_Town_pressed" binds= [ "Town5" ]]
+[connection signal="mouse_entered" from="Margin/BackButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/BackButton" to="." method="_on_BackButton_pressed"]

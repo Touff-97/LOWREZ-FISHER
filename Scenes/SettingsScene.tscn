@@ -1,0 +1,231 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/menu-background.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/n-minus.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/n-plus.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/music.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/sound.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/audio.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/h-minus.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/p-plus.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/h-plus.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/increment.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/p-minus.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/BackButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/SettingsScene.gd" type="Script" id=16]
+
+[node name="SettingsScene" instance=ExtResource( 1 )]
+script = ExtResource( 16 )
+
+[node name="Background" type="TextureRect" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="Background" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.376471, 0.376471, 0.376471, 0.784314 )
+
+[node name="Margin" type="MarginContainer" parent="." index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="VBox" type="VBoxContainer" parent="Margin" index="0"]
+margin_left = 8.0
+margin_top = 6.0
+margin_right = 56.0
+margin_bottom = 58.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_constants/separation = 2
+
+[node name="Title" type="Label" parent="Margin/VBox" index="0"]
+margin_right = 48.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 0, 12 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="Setting1" type="HBoxContainer" parent="Margin/VBox" index="1"]
+margin_top = 14.0
+margin_right = 48.0
+margin_bottom = 22.0
+custom_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="Margin/VBox/Setting1" index="0"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+texture = ExtResource( 7 )
+expand = true
+
+[node name="HBox" type="HBoxContainer" parent="Margin/VBox/Setting1" index="1"]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Minus" type="TextureButton" parent="Margin/VBox/Setting1/HBox" index="0"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 8 )
+expand = true
+
+[node name="Increment" type="TextureRect" parent="Margin/VBox/Setting1/HBox" index="1"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 0, 8 )
+size_flags_vertical = 3
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 2
+
+[node name="Plus" type="TextureButton" parent="Margin/VBox/Setting1/HBox" index="2"]
+margin_left = 32.0
+margin_right = 40.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+
+[node name="Setting2" type="HBoxContainer" parent="Margin/VBox" index="2"]
+margin_top = 24.0
+margin_right = 48.0
+margin_bottom = 32.0
+custom_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="Margin/VBox/Setting2" index="0"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="HBox" type="HBoxContainer" parent="Margin/VBox/Setting2" index="1"]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Minus" type="TextureButton" parent="Margin/VBox/Setting2/HBox" index="0"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 8 )
+expand = true
+
+[node name="Increment" type="TextureRect" parent="Margin/VBox/Setting2/HBox" index="1"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 0, 8 )
+size_flags_vertical = 3
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 2
+
+[node name="Plus" type="TextureButton" parent="Margin/VBox/Setting2/HBox" index="2"]
+margin_left = 32.0
+margin_right = 40.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+
+[node name="Setting3" type="HBoxContainer" parent="Margin/VBox" index="3"]
+margin_top = 34.0
+margin_right = 48.0
+margin_bottom = 42.0
+custom_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="Margin/VBox/Setting3" index="0"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="HBox" type="HBoxContainer" parent="Margin/VBox/Setting3" index="1"]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Minus" type="TextureButton" parent="Margin/VBox/Setting3/HBox" index="0"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 8 )
+expand = true
+
+[node name="Increment" type="TextureRect" parent="Margin/VBox/Setting3/HBox" index="1"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 0, 8 )
+size_flags_vertical = 3
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 2
+
+[node name="Plus" type="TextureButton" parent="Margin/VBox/Setting3/HBox" index="2"]
+margin_left = 32.0
+margin_right = 40.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 10
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+
+[node name="BackButton" parent="Margin/VBox" index="4" instance=ExtResource( 13 )]
+margin_left = 20.0
+margin_top = 44.0
+margin_right = 28.0
+margin_bottom = 52.0
+size_flags_horizontal = 6
+next_scene = "MainMenuScene"
+
+[connection signal="mouse_entered" from="Margin/VBox/Setting1/HBox/Minus" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/VBox/Setting1/HBox/Minus" to="." method="_on_masterMinus_pressed"]
+[connection signal="mouse_entered" from="Margin/VBox/Setting1/HBox/Plus" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/VBox/Setting1/HBox/Plus" to="." method="_on_masterPlus_pressed"]
+[connection signal="mouse_entered" from="Margin/VBox/Setting2/HBox/Minus" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/VBox/Setting2/HBox/Minus" to="." method="_on_musicMinus_pressed"]
+[connection signal="mouse_entered" from="Margin/VBox/Setting2/HBox/Plus" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/VBox/Setting2/HBox/Plus" to="." method="_on_musicPlus_pressed"]
+[connection signal="mouse_entered" from="Margin/VBox/Setting3/HBox/Minus" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/VBox/Setting3/HBox/Minus" to="." method="_on_soundMinus_pressed"]
+[connection signal="mouse_entered" from="Margin/VBox/Setting3/HBox/Plus" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/VBox/Setting3/HBox/Plus" to="." method="_on_soundPlus_pressed"]
+[connection signal="mouse_entered" from="Margin/VBox/BackButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/VBox/BackButton" to="." method="_on_BackButton_pressed"]

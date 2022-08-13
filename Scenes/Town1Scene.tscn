@@ -1,0 +1,156 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/town-1.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/GoToButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/SkyBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sprites/h-goto-town-2-from-1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/p-goto-town-2-from-1.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/TownScene.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/BackButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Sprites/h-town-1-tent.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/p-town-1-tent.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/h-town-fishing-spot.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/p-town-fishing-spot.png" type="Texture" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fade"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("NewDay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "wakeUp"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("NewDay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="Town1Scene" instance=ExtResource( 1 )]
+mouse_filter = 1
+script = ExtResource( 7 )
+
+[node name="SkyBox" parent="." index="0" instance=ExtResource( 4 )]
+margin_top = -472.0
+margin_right = 64.0
+background = NodePath("../Background")
+
+[node name="Background" type="TextureRect" parent="." index="1"]
+margin_left = -32.0
+margin_right = 96.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 128, 64 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="ToTown2" type="TextureButton" parent="Background" index="0"]
+margin_left = 107.0
+margin_top = 51.0
+margin_right = 128.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 21, 13 )
+mouse_default_cursor_shape = 2
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+expand = true
+
+[node name="ToTent" type="TextureButton" parent="Background" index="1"]
+margin_left = 85.0
+margin_top = 32.0
+margin_right = 102.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 17, 15 )
+mouse_default_cursor_shape = 2
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
+expand = true
+
+[node name="ToFishing" type="TextureButton" parent="Background" index="2"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 20.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 10, 8 )
+mouse_default_cursor_shape = 2
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 11 )
+expand = true
+
+[node name="HBox" type="HBoxContainer" parent="." index="2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="LeftButton" parent="HBox" index="0" instance=ExtResource( 3 )]
+
+[node name="RightButton" parent="HBox" index="1" instance=ExtResource( 3 )]
+margin_left = 56.0
+margin_right = 64.0
+size_flags_horizontal = 10
+flip_h = true
+
+[node name="Margin" type="MarginContainer" parent="." index="3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="BackButton" parent="Margin" index="0" instance=ExtResource( 8 )]
+next_scene = "MapScene"
+
+[node name="NewDay" type="ColorRect" parent="." index="4"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NewDay" index="0"]
+root_node = NodePath("../..")
+anims/Fade = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="." index="5"]
+
+[connection signal="day_finished" from="SkyBox" to="." method="_on_day_finished"]
+[connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_goToButton_mouse_entered" binds= [ "Left" ]]
+[connection signal="mouse_exited" from="HBox/LeftButton" to="." method="_on_goToButton_mouse_exited" binds= [ "Left" ]]
+[connection signal="pressed" from="HBox/LeftButton" to="." method="_on_goToButton_pressed" binds= [ "Left" ]]
+[connection signal="mouse_entered" from="HBox/RightButton" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="HBox/RightButton" to="." method="_on_goToButton_mouse_entered" binds= [ "Right" ]]
+[connection signal="mouse_exited" from="HBox/RightButton" to="." method="_on_goToButton_mouse_exited" binds= [ "Right" ]]
+[connection signal="pressed" from="HBox/RightButton" to="." method="_on_goToButton_pressed" binds= [ "Right" ]]
+[connection signal="mouse_entered" from="Margin/BackButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/BackButton" to="." method="_on_BackButton_pressed"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/BackButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/h-back.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/p-back.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/n-back.png" type="Texture" id=4]
+
+[node name="BackButton" type="TextureButton"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
+expand = true
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="." to="." method="_on_BackButton_pressed"]

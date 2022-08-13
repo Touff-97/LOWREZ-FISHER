@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/d-goto-button.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/h-goto-button.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/p-goto-button.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/n-goto-button.png" type="Texture" id=4]
+
+[node name="GoToButton" type="TextureButton"]
+margin_right = 8.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 8, 0 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 1 )
+expand = true
