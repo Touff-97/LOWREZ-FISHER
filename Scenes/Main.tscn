@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=2]
@@ -12,6 +12,11 @@
 [ext_resource path="res://Assets/Audio/Sounds/hover-button.wav" type="AudioStream" id=10]
 [ext_resource path="res://Assets/Audio/Sounds/select-button.wav" type="AudioStream" id=11]
 [ext_resource path="res://Assets/Audio/Sounds/error-button.wav" type="AudioStream" id=12]
+[ext_resource path="res://Scripts/InventoryManager.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/InventoryHUD.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Audio/Sounds/cast-rod.wav" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Audio/Sounds/catch-fish.wav" type="AudioStream" id=16]
+[ext_resource path="res://Assets/Audio/Sounds/fish.wav" type="AudioStream" id=17]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -62,3 +67,31 @@ bus = "Sounds"
 [node name="Error" type="AudioStreamPlayer" parent="AudioManager/SoundPlayer"]
 stream = ExtResource( 12 )
 bus = "Sounds"
+
+[node name="Cast" type="AudioStreamPlayer" parent="AudioManager/SoundPlayer"]
+stream = ExtResource( 15 )
+bus = "Sounds"
+
+[node name="Fish" type="AudioStreamPlayer" parent="AudioManager/SoundPlayer"]
+stream = ExtResource( 17 )
+bus = "Sounds"
+
+[node name="Catch" type="AudioStreamPlayer" parent="AudioManager/SoundPlayer"]
+stream = ExtResource( 16 )
+bus = "Sounds"
+
+[node name="InventoryManager" type="Node" parent="."]
+script = ExtResource( 13 )
+
+[node name="SaveTimer" type="Timer" parent="InventoryManager"]
+wait_time = 10.0
+autostart = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="InventoryHUD" parent="GUI" instance=ExtResource( 14 )]
+
+[connection signal="timeout" from="InventoryManager/SaveTimer" to="." method="_on_SaveTimer_timeout"]
+
+[editable path="GUI/InventoryHUD"]

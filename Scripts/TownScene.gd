@@ -2,8 +2,10 @@ extends "res://Scripts/Scene.gd"
 
 onready var back_button = $Margin/BackButton
 onready var background = $Background
+onready var skybox = $SkyBox
 onready var tween = $Tween
 onready var anim_player = $NewDay/AnimationPlayer
+onready var town_label = $Margin/ToTown2Label
 
 var town_size : int = 128
 var town_scenes : int = 2
@@ -92,9 +94,24 @@ func _on_BackButton_pressed() -> void:
 	transitionToScene()
 
 
-func _on_day_finished() -> void:
-	anim_player.play("Fade")
+func _on_ToFishing_pressed() -> void:
+	emit_signal("sound_effect", "Select")
+	
+	skybox.set_physics_process(false)
+	
+	next_scene = "Town1BeachScene"
+	transitionToScene()
 
 
-func wakeUp() -> void:
-	rect_position.x = starting_position
+func _on_ToTown2_pressed() -> void:
+	town_label.visible = true
+	yield(get_tree().create_timer(1.0), "timeout")
+	town_label.visible = false
+#
+#
+#func _on_day_finished() -> void:
+#	anim_player.play("Fade")
+#
+#
+#func wakeUp() -> void:
+#	rect_position.x = starting_position

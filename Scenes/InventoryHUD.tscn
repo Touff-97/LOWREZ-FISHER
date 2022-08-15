@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/3-by-5-pixel-font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/InventoryHUD.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sprites/coin-icon.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/fish-icon.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 7
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="InventoryHUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="HBox" type="HBoxContainer" parent="Margin"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 60.0
+margin_bottom = 12.0
+size_flags_vertical = 0
+custom_constants/separation = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/HBox"]
+margin_right = 32.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+custom_constants/separation = 2
+
+[node name="FishIcon" type="TextureRect" parent="Margin/HBox/HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+
+[node name="FishLabel" type="Label" parent="Margin/HBox/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 10.0
+margin_top = 1.0
+margin_right = 22.0
+margin_bottom = 6.0
+size_flags_horizontal = 0
+text = "000"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Margin/HBox"]
+margin_left = 34.0
+margin_right = 56.0
+margin_bottom = 8.0
+custom_constants/separation = 1
+
+[node name="Panel" type="Panel" parent="Margin/HBox/HBoxContainer2"]
+margin_bottom = 8.0
+mouse_filter = 2
+
+[node name="CoinLabel" type="Label" parent="Margin/HBox/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 13.0
+margin_bottom = 6.0
+text = "000"
+
+[node name="CoinIcon" type="TextureRect" parent="Margin/HBox/HBoxContainer2"]
+margin_left = 14.0
+margin_right = 22.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+expand = true

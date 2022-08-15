@@ -17,6 +17,7 @@
 
 [node name="SettingsScene" instance=ExtResource( 1 )]
 script = ExtResource( 16 )
+next_music = "Menu"
 
 [node name="Background" type="TextureRect" parent="." index="0"]
 anchor_right = 1.0

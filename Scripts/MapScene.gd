@@ -15,7 +15,6 @@ func _on_Town_pressed(town: String) -> void:
 	find_node(town).disabled = true
 	emit_signal("sound_effect", "Select")
 	next_scene = town + "Scene"
-	print(next_scene)
 	transitionToScene()
 
 

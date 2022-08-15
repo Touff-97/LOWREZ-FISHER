@@ -15,6 +15,7 @@ func loadScene(scene: String) -> void:
 		new_scene.connect("scene_transition", main_node, "_on_sceneTransition")
 		new_scene.connect("song_transition", main_node, "_on_songTransition")
 		new_scene.connect("sound_effect", main_node, "_on_soundEffect")
+		new_scene.connect("toggle_hud", main_node, "_on_toggleHud")
 		add_child(new_scene)
 		move_child(new_scene, 0)
 		yield(get_tree().create_timer(1.0), "timeout")

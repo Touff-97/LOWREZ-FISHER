@@ -61,11 +61,14 @@ tracks/0/keys = {
 [node name="Town1Scene" instance=ExtResource( 1 )]
 mouse_filter = 1
 script = ExtResource( 7 )
+next_music = "Idle"
+hud_on = true
 
 [node name="SkyBox" parent="." index="0" instance=ExtResource( 4 )]
 margin_top = -472.0
 margin_right = 64.0
 background = NodePath("../Background")
+rod = NodePath("../Background")
 
 [node name="Background" type="TextureRect" parent="." index="1"]
 margin_left = -32.0
@@ -125,9 +128,29 @@ flip_h = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
 
 [node name="BackButton" parent="Margin" index="0" instance=ExtResource( 8 )]
+margin_left = 4.0
+margin_top = 52.0
+margin_right = 12.0
+margin_bottom = 60.0
+size_flags_vertical = 10
 next_scene = "MapScene"
+
+[node name="ToTown2Label" type="Label" parent="Margin" index="1"]
+visible = false
+margin_left = 4.0
+margin_top = 24.0
+margin_right = 60.0
+margin_bottom = 39.0
+text = "Road Blocked"
+align = 1
+valign = 1
+autowrap = true
 
 [node name="NewDay" type="ColorRect" parent="." index="4"]
 visible = false
@@ -145,14 +168,17 @@ anims/RESET = SubResource( 2 )
 
 [connection signal="day_finished" from="SkyBox" to="." method="_on_day_finished"]
 [connection signal="mouse_entered" from="Background/ToTown2" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Background/ToTown2" to="." method="_on_ToTown2_pressed"]
 [connection signal="mouse_entered" from="Background/ToTent" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Background/ToTent" to="." method="_on_ToTown2_pressed"]
 [connection signal="mouse_entered" from="Background/ToFishing" to="." method="_on_mouse_entered"]
-[connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Background/ToFishing" to="." method="_on_ToFishing_pressed"]
 [connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_goToButton_mouse_entered" binds= [ "Left" ]]
+[connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBox/LeftButton" to="." method="_on_goToButton_mouse_exited" binds= [ "Left" ]]
 [connection signal="pressed" from="HBox/LeftButton" to="." method="_on_goToButton_pressed" binds= [ "Left" ]]
-[connection signal="mouse_entered" from="HBox/RightButton" to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="HBox/RightButton" to="." method="_on_goToButton_mouse_entered" binds= [ "Right" ]]
+[connection signal="mouse_entered" from="HBox/RightButton" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBox/RightButton" to="." method="_on_goToButton_mouse_exited" binds= [ "Right" ]]
 [connection signal="pressed" from="HBox/RightButton" to="." method="_on_goToButton_pressed" binds= [ "Right" ]]
 [connection signal="mouse_entered" from="Margin/BackButton" to="." method="_on_mouse_entered"]
