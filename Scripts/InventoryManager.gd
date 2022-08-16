@@ -1,44 +1,35 @@
 extends Node
 
-export(Dictionary) var game_data = {}
+export(Dictionary) var game_data = {
+									"PlayerInventory": {
+										"fishes": 0,
+										"coins": 0
+									}
+								}
 
 var path : String = "user://savedata.save"
 
-signal has_fishes
-signal out_of_fishes
+signal data_loaded(data)
 
 
-func _process(delta: float) -> void:
-	if fishes <= 0:
-		fishes = 0
-		emit_signal("out_of_fishes")
-	else:
-		emit_signal("has_fishes")
-
-
-func save_node() -> Dictionary:
-	var temp_dict := {}
-	temp_dict["Player"] = {
-		"fishes": fishes,
-		"coins": coins
-	}
-	
-	return temp_dict
-
-
-func load_inventory() -> void:
-#	var file = File.new()
-#	if not file.file_exists(path):
-#		return
+func load_game() -> void:
+	var save_game = File.new()
+	if not save_game.file_exists(path):
+		return
 #
-#	file.open(path, File.READ)
-#	var current_line = parse_json(file.get_line())
-#	file.close()
-	pass
+	save_game.open(path, File.READ)
+	
+	var save_game_data = JSON.parse(save_game.get_as_text())
+	if typeof(save_game_data.result) == TYPE_DICTIONARY:
+		game_data = save_game_data.result
+		emit_signal("data_loaded", game_data)
+	else:
+		 push_error("Unexpected results.")
+	
+	save_game.close()
 
 
-
-func save_inventory() -> void:
+func save_game() -> void:
 	var save_game = File.new()
 	save_game.open(path, File.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")

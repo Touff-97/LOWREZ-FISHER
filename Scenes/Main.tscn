@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Assets/Audio/Sounds/cast-rod.wav" type="AudioStream" id=15]
 [ext_resource path="res://Assets/Audio/Sounds/catch-fish.wav" type="AudioStream" id=16]
 [ext_resource path="res://Assets/Audio/Sounds/fish.wav" type="AudioStream" id=17]
+[ext_resource path="res://Scripts/PlayerInventory.gd" type="Script" id=18]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -82,20 +83,22 @@ bus = "Sounds"
 
 [node name="DataManager" type="Node" parent="."]
 script = ExtResource( 13 )
-fishes = null
-coins = null
 
 [node name="SaveTimer" type="Timer" parent="DataManager"]
 wait_time = 10.0
 autostart = true
+
+[node name="PlayerInventory" type="Node" parent="DataManager" groups=["Persist"]]
+script = ExtResource( 18 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="InventoryHUD" parent="GUI" instance=ExtResource( 14 )]
 
-[connection signal="has_fishes" from="DataManager" to="." method="_on_InventoryManager_has_fishes"]
-[connection signal="out_of_fishes" from="DataManager" to="." method="_on_InventoryManager_out_of_fishes"]
+[connection signal="data_loaded" from="DataManager" to="." method="_on_DataManager_data_loaded"]
 [connection signal="timeout" from="DataManager/SaveTimer" to="." method="_on_SaveTimer_timeout"]
+[connection signal="has_fishes" from="DataManager/PlayerInventory" to="." method="_on_has_fishes"]
+[connection signal="out_of_fishes" from="DataManager/PlayerInventory" to="." method="_on_out_of_fishes"]
 
 [editable path="GUI/InventoryHUD"]
