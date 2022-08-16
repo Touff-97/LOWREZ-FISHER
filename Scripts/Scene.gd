@@ -3,10 +3,16 @@ extends Control
 export(String) var next_scene = ""
 export(String) var next_music = ""
 export(bool) var hud_on = false
+export(bool) var out_of_fish = false
+
+export(Dictionary) var inventory = {}
+export(Dictionary) var scene_data = {}
 
 signal scene_transition(scene)
 signal song_transition(song)
 signal sound_effect(effect)
+
+signal fetch_inventory(origin)
 
 signal toggle_hud(is_hud)
 
@@ -30,3 +36,14 @@ func deleteCurrentScene() -> void:
 ### AUDIO LOGIC ###
 func transitionToSong() -> void:
 	emit_signal("song_transition", next_music)
+
+
+### SAVE AND LOAD LOGIC ###
+func save_node() -> Dictionary:
+	var temp_dict := {}
+	temp_dict[get_name()] = scene_data
+	return temp_dict
+
+
+func load_node(data: Dictionary) -> void:
+	scene_data = data

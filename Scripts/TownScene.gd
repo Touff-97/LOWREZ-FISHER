@@ -103,6 +103,15 @@ func _on_ToFishing_pressed() -> void:
 	transitionToScene()
 
 
+func _on_ToTent_pressed() -> void:
+	emit_signal("sound_effect", "Select")
+	
+	skybox.set_physics_process(false)
+	
+	next_scene = "TentScene"
+	transitionToScene()
+
+
 func _on_ToTown2_pressed() -> void:
 	town_label.visible = true
 	yield(get_tree().create_timer(1.0), "timeout")

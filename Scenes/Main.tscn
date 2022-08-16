@@ -80,10 +80,12 @@ bus = "Sounds"
 stream = ExtResource( 16 )
 bus = "Sounds"
 
-[node name="InventoryManager" type="Node" parent="."]
+[node name="DataManager" type="Node" parent="."]
 script = ExtResource( 13 )
+fishes = null
+coins = null
 
-[node name="SaveTimer" type="Timer" parent="InventoryManager"]
+[node name="SaveTimer" type="Timer" parent="DataManager"]
 wait_time = 10.0
 autostart = true
 
@@ -92,6 +94,8 @@ visible = false
 
 [node name="InventoryHUD" parent="GUI" instance=ExtResource( 14 )]
 
-[connection signal="timeout" from="InventoryManager/SaveTimer" to="." method="_on_SaveTimer_timeout"]
+[connection signal="has_fishes" from="DataManager" to="." method="_on_InventoryManager_has_fishes"]
+[connection signal="out_of_fishes" from="DataManager" to="." method="_on_InventoryManager_out_of_fishes"]
+[connection signal="timeout" from="DataManager/SaveTimer" to="." method="_on_SaveTimer_timeout"]
 
 [editable path="GUI/InventoryHUD"]

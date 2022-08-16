@@ -15,17 +15,17 @@ signal day_finished
 
 
 func _ready() -> void:
-	background.self_modulate = starting_light
+	background.modulate = starting_light
 	if rod:
-		rod.self_modulate = starting_light
+		rod.modulate = starting_light
 
 
 func _process(delta: float) -> void:
 	var time = loadTimeFromOS()
 	rect_position = starting_position.linear_interpolate(ending_position, time["minute"] / total_minutes)
-	background.self_modulate = starting_light.linear_interpolate(ending_light, time["minute"] / total_minutes)
+	background.modulate = starting_light.linear_interpolate(ending_light, time["minute"] / total_minutes)
 	if rod:
-		rod.self_modulate = starting_light.linear_interpolate(ending_light, time["minute"] / total_minutes)
+		rod.modulate = starting_light.linear_interpolate(ending_light, time["minute"] / total_minutes)
 	
 #	if time["minute"] == 59 and time["second"] >= 58:
 #		print("Night time!")

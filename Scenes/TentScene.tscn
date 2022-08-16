@@ -1,0 +1,257 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Scenes/SkyBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Scene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Sprites/Tent/environment/arm.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Tent/environment/tent-down.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Tent/environment/tent-up.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Tent/environment/bucket-shadow.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/BackButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sprites/Tent/h-bucket-o-fish.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Tent/d-bunch-o-worms.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Tent/n-bunch-o-worms.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/Tent/p-bunch-o-worms.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Tent/n-bucket-o-fish.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Tent/p-bucket-o-fish.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Tent/h-bunch-o-worms.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Tent/p-couple-o-hooks.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/Tent/d-couple-o-hooks.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/Tent/h-couple-o-hooks.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/Tent/n-couple-o-hooks.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/Tent/n-apple.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/Tent/d-apple.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/Tent/p-apple.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/Tent/h-apple.png" type="Texture" id=22]
+[ext_resource path="res://Scripts/TentScene.gd" type="Script" id=23]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ArmAppear"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "enableArm"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "ArmDisappear"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 32, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "disableArm"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../BucketShadow/Bucket:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../BucketShadow/Bucket:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="TentScene" groups=["Persist"] instance=ExtResource( 2 )]
+mouse_filter = 2
+script = ExtResource( 23 )
+hud_on = true
+
+[node name="SkyBox" parent="." index="0" instance=ExtResource( 1 )]
+background = NodePath("../Background")
+rod = NodePath("../Background")
+
+[node name="Background" type="Control" parent="." index="1"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+
+[node name="TentDown" type="TextureRect" parent="Background" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Arm" type="TextureRect" parent="Background" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Bait" type="TextureButton" parent="Background/Arm" index="0"]
+margin_left = 34.0
+margin_top = 25.0
+margin_right = 44.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 10, 10 )
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 14 )
+texture_disabled = ExtResource( 9 )
+expand = true
+
+[node name="Hooks" type="TextureButton" parent="Background/Arm" index="1"]
+margin_left = 46.0
+margin_top = 25.0
+margin_right = 55.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 9, 12 )
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
+
+[node name="Apple" type="TextureButton" parent="Background/Arm" index="2"]
+margin_left = 42.0
+margin_top = 32.0
+margin_right = 47.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 5, 10 )
+texture_normal = ExtResource( 19 )
+texture_pressed = ExtResource( 21 )
+texture_hover = ExtResource( 22 )
+texture_disabled = ExtResource( 20 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Arm" index="3"]
+anims/ArmAppear = SubResource( 1 )
+anims/ArmDisappear = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="TentUp" type="TextureRect" parent="Background" index="2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+
+[node name="BucketShadow" type="TextureRect" parent="Background" index="3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Bucket" type="TextureButton" parent="Background/BucketShadow" index="0"]
+margin_left = 4.0
+margin_top = 34.0
+margin_right = 21.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 17, 21 )
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 8 )
+expand = true
+
+[node name="Margin" type="MarginContainer" parent="." index="2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BackButton" parent="Margin" index="0" instance=ExtResource( 7 )]
+margin_left = 4.0
+margin_top = 52.0
+margin_right = 12.0
+margin_bottom = 60.0
+size_flags_vertical = 10
+next_scene = "Town1Scene"
+
+[connection signal="mouse_entered" from="Background/Arm/Bait" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Background/Arm/Bait" to="." method="_on_Bait_pressed"]
+[connection signal="mouse_entered" from="Background/Arm/Hooks" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="Background/Arm/Apple" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="Background/BucketShadow/Bucket" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Background/BucketShadow/Bucket" to="." method="_on_Bucket_pressed"]
+[connection signal="mouse_entered" from="Margin/BackButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Margin/BackButton" to="." method="_on_BackButton_pressed"]

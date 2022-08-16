@@ -170,7 +170,7 @@ anims/RESET = SubResource( 2 )
 [connection signal="mouse_entered" from="Background/ToTown2" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Background/ToTown2" to="." method="_on_ToTown2_pressed"]
 [connection signal="mouse_entered" from="Background/ToTent" to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="Background/ToTent" to="." method="_on_ToTown2_pressed"]
+[connection signal="pressed" from="Background/ToTent" to="." method="_on_ToTent_pressed"]
 [connection signal="mouse_entered" from="Background/ToFishing" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Background/ToFishing" to="." method="_on_ToFishing_pressed"]
 [connection signal="mouse_entered" from="HBox/LeftButton" to="." method="_on_goToButton_mouse_entered" binds= [ "Left" ]]
