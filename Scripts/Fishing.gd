@@ -32,7 +32,7 @@ func _on_FishButton_pressed() -> void:
 		anim_player.play("Cast")
 		# When rod cast, start fish timer
 		var time = OS.get_time()
-		fish_appearance = randi() % time["minute"] + 5
+		fish_appearance = randi() % (time["minute"] + 5)
 		get_node("FishTimer").start(fish_appearance)
 		
 	if anim_player.get_current_animation() == "Fish":

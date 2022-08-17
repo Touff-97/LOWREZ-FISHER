@@ -26,6 +26,7 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sounds"), -10)
 	
 	data_manager.load_game()
+	player_inv.load_node(data_manager.game_data["PlayerInventory"])
 	inventory_hud.load_inventory(data_manager.game_data["PlayerInventory"])
 
 
@@ -44,7 +45,8 @@ func _on_soundEffect(sound: String) -> void:
 
 
 func _on_fetchInventory(origin: NodePath) -> void:
-	get_node(origin).inventory = data_manager.save()
+	data_manager.load_game()
+	get_node(origin).inventory = player_inv.inventory
 
 
 func _on_toggleHud(is_hud: bool) -> void:
@@ -78,9 +80,11 @@ func _on_SaveTimer_timeout() -> void:
 
 func _on_DataManager_data_loaded(data: Dictionary) -> void:
 	for i in data.keys():
+		print(i)
 		var save_nodes = get_tree().get_nodes_in_group("Persist")
 		if save_nodes.has(i):
-			save_nodes[save_nodes.bsearch(i)].load_data(data[i])
+			print(save_nodes[save_nodes.bsearch(i)].name)
+			save_nodes[save_nodes.bsearch(i)].load_node(data[i])
 
 
 func _on_out_of_fishes() -> void:

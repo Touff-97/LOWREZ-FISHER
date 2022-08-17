@@ -24,4 +24,5 @@ func save_node() -> Dictionary:
 
 
 func load_node(data: Dictionary) -> void:
+	print("Player inventory loaded!")
 	inventory = data

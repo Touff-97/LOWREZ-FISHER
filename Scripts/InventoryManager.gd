@@ -19,12 +19,10 @@ func load_game() -> void:
 #
 	save_game.open(path, File.READ)
 	
-	var save_game_data = JSON.parse(save_game.get_as_text())
-	if typeof(save_game_data.result) == TYPE_DICTIONARY:
-		game_data = save_game_data.result
+	while not save_game.eof_reached():
+		var save_game_data = parse_json(save_game.get_line())
+		game_data = save_game_data
 		emit_signal("data_loaded", game_data)
-	else:
-		 push_error("Unexpected results.")
 	
 	save_game.close()
 

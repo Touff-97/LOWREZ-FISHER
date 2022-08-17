@@ -29,11 +29,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if out_of_fish:
-		print("Bucket disabled")
 		bucket.disabled = true
 	else:
 		if fishes_to_disable > 0:
-			print("Bucket enabled")
 			bucket.disabled = false
 
 
