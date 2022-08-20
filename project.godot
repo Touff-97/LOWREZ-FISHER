@@ -18,6 +18,10 @@ config/icon="res://icon.png"
 
 GameData="*res://Scripts/GameData.gd"
 
+[autoload]
+
+GameData="*res://Scripts/GameData.gd"
+
 [display]
 
 window/size/width=64
