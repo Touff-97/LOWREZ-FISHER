@@ -123,7 +123,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[node name="TentScene" groups=["Persist"] instance=ExtResource( 2 )]
+[node name="TentScene" instance=ExtResource( 2 )]
 mouse_filter = 2
 script = ExtResource( 23 )
 hud_on = true
@@ -149,8 +149,8 @@ expand = true
 [node name="Arm" type="TextureRect" parent="Background" index="1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 24.0
-margin_bottom = 24.0
+margin_right = 304.0
+margin_bottom = 304.0
 rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 3 )
 expand = true

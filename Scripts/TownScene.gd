@@ -17,11 +17,13 @@ var right_boundary : int
 
 
 func _ready() -> void:
+# warning-ignore:integer_division
 	left_boundary = starting_position + ((town_size / 2) - shift_amount)
+# warning-ignore:integer_division
 	right_boundary = starting_position - ((town_size / 2) - shift_amount)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if background.rect_position.x > left_boundary:
 		background.rect_position.x = left_boundary
 	

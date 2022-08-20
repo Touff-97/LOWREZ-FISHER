@@ -3,12 +3,6 @@ extends "res://Scripts/Scene.gd"
 onready var skybox = $SkyBox
 onready var back_button = $Fishing/Margin/BackButton
 
-signal fish_caught
-
-
-func _ready() -> void:
-	connect("fish_caught", get_node("/root/Main"), "_on_fishCaught")
-
 
 func _on_mouse_entered() -> void:
 	emit_signal("sound_effect", "Hover")
@@ -29,4 +23,5 @@ func _on_Fishing_sound_effect(effect: String) -> void:
 
 
 func _on_Fishing_fish_caught() -> void:
-	emit_signal("fish_caught")
+	GameData.fishes += 1
+	emit_signal("update_hud")

@@ -15,22 +15,24 @@ signal day_finished
 
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
+	connect("day_finished", get_node("/root/Main"), "_on_dayFinished")
+	
 	background.modulate = starting_light
 	if rod:
 		rod.modulate = starting_light
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var time = loadTimeFromOS()
 	rect_position = starting_position.linear_interpolate(ending_position, time["minute"] / total_minutes)
 	background.modulate = starting_light.linear_interpolate(ending_light, time["minute"] / total_minutes)
 	if rod:
 		rod.modulate = starting_light.linear_interpolate(ending_light, time["minute"] / total_minutes)
 	
-#	if time["minute"] == 59 and time["second"] >= 58:
-#		print("Night time!")
-#		emit_signal("day_finished")
-#		set_process(false)
+	if time["minute"] == 59 and time["second"] >= 58:
+		emit_signal("day_finished")
+		set_process(false)
 
 
 func loadTimeFromOS() -> Dictionary:
