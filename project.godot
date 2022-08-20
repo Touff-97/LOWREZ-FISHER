@@ -16,6 +16,10 @@ boot_splash/image="res://Assets/Sprites/godot-splashscreen.png"
 boot_splash/use_filter=false
 config/icon="res://Assets/Sprites/godot-icon.png"
 
+[autoload]
+
+GameData="*res://Scripts/GameData.gd"
+
 [display]
 
 window/size/width=64
